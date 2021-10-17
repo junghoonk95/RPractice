@@ -1,0 +1,211 @@
+---
+title: "q3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+# Returns TRUE if the (character string) is a lower-case vowel
+# (a, e, i, o, or u), or FALSE otherwise.
+isLowerVowel = function(letter) {
+  if (letter=="a"|letter=="e"|letter=="i"|letter=="o"|letter=="u"){return(TRUE)}
+    else{
+      return(FALSE)
+    }
+    
+}
+
+
+isLowerVowel("e")
+```
+
+
+```{r}
+
+# Returns the smaller of x and y (both scalars).
+baby.min = function(x, y) {
+
+  if (x>y){return(y)}
+  else{return(x)}
+}
+
+
+```
+
+
+```{r}
+
+#Use an if ... else if ... else statement to complete the following function:
+
+# Given a nonnegative integer, age, returns a character string,
+# one of "child" (0-14 years), "youth" (15-24 years),
+# "adult" (25-64 years) or "senior" (65 or older).
+ageCategory = function(age) {
+  if(age<=14){return("child")}
+  if(age<=24 & age>=15){return("youth")}
+  if(age<=64 & 25<=age){return("adult")}
+  else{return("senior")}
+  
+
+}
+
+ageCategory(24)
+```
+
+
+```{r}
+baby.min.vector = function(x, y) {
+ifelse(x<y,x,y)
+}
+
+baby.min.vector(2,3)
+```
+
+baby.sapply(X=c(1, 4, 9), FUN=sqrt)
+
+
+
+```{r}
+# For numeric vector X and function FUN, baby.sapply(X, FUN)
+# returns a vector whose ith value is FUN(X[i]).
+# e.g. baby.sapply(X=c(1, 4, 9), FUN=sqrt) finds
+# c(sqrt(1), sqrt(4), sqrt(9))
+# and returns
+# c(1, 2, 3).
+#
+# Note: This is a small version of R's built-in function sapply(), which
+# applies FUN to each element of X. We'll study sapply() later.
+baby.sapply = function(X, FUN) {
+for(i in 0:length(X))
+ {X[i]=FUN(X[i])
+  }
+return(X)}
+
+
+
+```
+
+
+
+# For numeric vector X, factor INDEX, and function FUN that returns
+# a single number, baby.tapply(X, INDEX, FUN) applies FUN to a subset of X
+# for each level in in INDEX (having the same length as X), returning a
+# vector of length(levels(factor(INDEX))) values.
+# e.g. baby.tapply(X=mtcars$mpg, INDEX=mtcars$cyl, FUN=mean)
+# gives a vector of three means, one each for 4-, 6-, and 8-cylinder cars.
+#
+# Note: This is a small version of R's function tapply(), which we'll study later.
+```{r}
+
+baby.tapply = function(X, INDEX, FUN)
+ { v=levels(factor(INDEX))
+  for(i in 0:length(v)){
+   v[i]=FUN(X[factor(INDEX)==v[i]])
+    
+    
+  }
+return(as.integer(v) )
+}
+
+baby.tapply(X=mtcars$mpg, INDEX=mtcars$cyl, FUN=mean)
+length(levels(factor(mtcars$cyl)))
+```
+
+
+```{r}
+# Returns the sum of the even numbers in vector x.
+# e.g. sumEven(c(2, 5, 10, 11)) returns 12.
+sumEven = function(x) {
+return(sum(x[(x%%2==0)]))
+
+  }
+sumEven(c(2, 5, 10, 11))
+```
+
+
+```{r}
+# Returns the sum of the even numbers in vector x.
+sumEven = function(x) {
+  k=0
+  if (length(x)==0){return(k=0)}
+  else{
+  for(i in 1:length(x)){
+  
+  if (x[i]%%2==0 ){k=k+x[i]}
+  }
+  return(k)}
+}
+
+sumEven(c())
+```
+
+```{r}
+# Returns index of first occurrence of target in x, or 0 if target is not in x.
+# e.g. For x = c(8, 7, 6),
+# linearSearch(x=x, target=7) returns 2,
+# linearSearch(x=x, target=5) returns 0, and
+# linearSearch(x=NULL, target=5) returns 0.
+linearSearch = function(x, target) {
+  if (length(x)==0){return(k=0)}
+  else{
+  for(i in 1:length(x)){
+    if (x[i]==target){return(i)}
+    
+  }
+return(0)}
+}
+
+
+
+x = c(8, 7, 6)
+linearSearch(x=x, target=7) 
+linearSearch(x=x, target=5) 
+linearSearch(x=NULL, target=5) 
+```
+
+
+
+
+```{r}
+# Uses binary search to return the index of an occurrence of target in x,
+# where x is a vector sorted in increasing order, or 0 if target is not in x.
+binarySearch = function(x, target) {
+  low <- 1
+  high <- length(x)
+
+  while(low <= high) {
+    mid <- median(low,high)
+    if(x[mid] == target) {
+      return(mid)} 
+    if(target < x[mid]) 
+      {
+      high <- mid -1
+    } else {
+      low  <- mid +1
+    }
+  }
+}
+
+x = c(1,2,3,5,6,7,8,9)
+
+binarySearch(x,7)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
