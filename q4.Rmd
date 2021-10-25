@@ -1,0 +1,46 @@
+---
+title: "hw 304 abs"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+average = sapply(X=mtcars, FUN=sd
+                )
+average
+```
+
+
+```{r}
+scoreCar = function(mpg, hp) { return(20*mpg + hp) }
+m = mtcars
+x=m$mpg
+y=m$hp
+mapply(x,y,FUN=scoreCar) 
+
+
+```
+
+
+```{r}
+m = matrix(data=1:6, nrow=2, ncol=3)
+m
+rowSums(m)
+rowStandardDeviations = function(x) {
+return(apply(X=m, MARGIN=1, FUN=sd))
+}
+rowStandardDeviations(m)
+
+
+```
+
+
+```{r}
+iris
+tapply(X=iris$Petal.Length, INDEX=iris$Species, FUN=mean)
+
+```
