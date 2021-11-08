@@ -1,0 +1,86 @@
+---
+title: "Stat 304 q6"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+v = readLines(con="jkang96Q6.txt")
+v
+
+
+```
+
+```{r}
+#1
+grep(pattern = "A", x =v,perl = TRUE)
+
+#2
+grep(pattern = "(1|2|3)\\s(a|b|c)", x =v,perl = TRUE)
+
+#3
+grep(pattern = "^(A|B|C)", x =v,perl = TRUE)
+
+
+```
+
+```{r}
+#4
+
+k=gsub("\\s[0-9].*", "",x=v)
+
+length(grep("[^aeiou]$", x=k, value = TRUE))
+
+```
+
+
+```{r}
+#5
+k=gsub("\\w.*\\d\\s", "",x=v)
+
+
+length(grep("[aeiou]{2}", x=k, value = TRUE))
+```
+
+
+```{r}
+#6
+v
+b = sub(pattern = "(\\d)(\\d)(\\d)(\\d)", replacement = "\\2,\\1,\\3,\\4", x = v)
+b
+a = gsub(" ", ",", b)
+a
+print("  ")
+
+fileConn<-file("output.txt")
+writeLines(c(a), fileConn)
+close(fileConn)
+t=read.csv("output.txt",col.names = c("NAME", "S1","S2","S3","S4","WORD"),header = FALSE)
+t
+s = sum(t$S1) + sum(t$S2) + sum(t$S3) + sum(t$S4)
+s
+```
+
+
+```{r}
+k=gsub("\\w.*\\d\\s", "",x=v)
+k
+grep("(^[aeiou]\\w)|(\\w[aeiou]$)",x=k)
+
+
+# 7
+b = sub(pattern = "([aeiou]{1})([^aeiou]{1})", replacement = "\\2\\1", x = k)
+b
+length(grep("[aeiou]{2}", x=b, value = TRUE))
+```
+
+
+```{r}
+#8
+ss="1+2+3+4+5+6"
+strsplit(x=ss, split="")
+length(strsplit(x=ss, split=" +"))
+```
